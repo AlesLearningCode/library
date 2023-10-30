@@ -26,3 +26,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+dialog::backdrop{
+    height: 400px;
+    display: flex;
+}

@@ -1,12 +1,28 @@
 const displayBooks = document.querySelector(`.Book`)
-const newBook = document.querySelector(`button`)
+const addBook = document.querySelector(`.addbook`)
+const newAuthor = document.querySelector(`.author`)
+const newTitle = document.querySelector(`.title`)
+const newPages = document.querySelector(`.pages`)
+const newRead = document.querySelector(`.read`)
+const dialog = document.querySelector(`.dialog`)
+const newBook = document.querySelector(`.newbook`)
+
 const myLibrary = [];
 myLibrary.push(new Book(`The Hobbit`, `J.R.R. Tolkien`, 295, `not read yet`))
 myLibrary.push(new Book(`The Hobbit`, `J.R.R. Tolk`, 295, `not read yet`))
 
 newBook.addEventListener(`click`, () =>{
+  dialog.showModal()
+})
+
+addBook.addEventListener(`click`, () =>{
   addBookToLibrary()
   displayBook()
+  newTitle.value = " "
+  newAuthor.value = " "
+  newPages.value = " "
+  newRead.value = " "
+  dialog.close()
   console.log(myLibrary)
 })
 
@@ -23,10 +39,10 @@ this.info = function(){
 
 
 function addBookToLibrary(){
-  title = prompt(`What is the book title`)
-  author = prompt(`What is the books author`)
-  pages = prompt(`How many pages does book have`)
-  read = prompt(`Have you read the book?`)
+  title = newTitle.value
+  author = newAuthor.value
+  pages = newPages.value
+  read = newRead.value
   myLibrary.push(new Book(title, author, pages, read))
 }
 
@@ -52,5 +68,9 @@ for(let books in myLibrary){
 }
 }
 
-
-
+window.onload=function() {
+    document.getElementById("myform").onsubmit=function(e) {
+      event.preventDefault(); // first statement
+      // do something with the form field
+    }
+  }
